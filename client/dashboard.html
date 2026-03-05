@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard — Patient Records</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <div class="title">Patient Records Dashboard</div>
+        <div class="muted">Hospital staff view</div>
+      </div>
+      <div class="controls">
+        <input id="search-input" type="text" placeholder="Search patients by name">
+        <button id="search-btn" class="btn secondary">Search</button>
+        <button id="refresh-btn" class="btn">Refresh</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="patient-list">
+          <tr><td colspan="5">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- View modal -->
+  <div class="modal" id="view-modal">
+    <div class="panel">
+      <div class="header">
+        <strong id="modal-title">Patient</strong>
+        <button class="close" onclick="document.getElementById('view-modal').classList.remove('open')">✕</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Update modal -->
+  <div class="modal" id="update-modal">
+    <div class="panel">
+      <div class="header">
+        <strong id="update-modal-title">Update</strong>
+        <button class="close" onclick="document.getElementById('update-modal').classList.remove('open')">✕</button>
+      </div>
+      <form id="update-form">
+        <input id="update-id" type="hidden">
+        <div style="margin-bottom:8px"><input id="update-name" type="text" placeholder="Full name" required style="width:100%"></div>
+        <div style="margin-bottom:8px"><input id="update-dob" type="date" placeholder="DOB" style="width:100%"></div>
+        <div style="margin-bottom:8px"><input id="update-gender" type="text" placeholder="Gender" style="width:100%"></div>
+        <div style="margin-bottom:8px"><input id="update-national" type="text" placeholder="National ID" style="width:100%"></div>
+        <div style="text-align:right"><button class="btn" type="submit">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notes modal -->
+  <div class="modal" id="notes-modal">
+    <div class="panel">
+      <div class="header">
+        <strong>Add Clinical Note</strong>
+        <button class="close" onclick="document.getElementById('notes-modal').classList.remove('open')">✕</button>
+      </div>
+      <form id="notes-form">
+        <input id="notes-patient-id" type="hidden">
+        <div style="margin-bottom:8px"><textarea id="notes-text" rows="6" style="width:100%" placeholder="Clinical note"></textarea></div>
+        <div style="text-align:right"><button class="btn" type="submit">Add Note</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

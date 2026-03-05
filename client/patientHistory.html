@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Patient History</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title" id="ph-title">Patient History</div>
+      <div class="controls"><button onclick="history.back()" class="btn secondary">Back</button></div>
+    </div>
+    <div class="card">
+      <div id="patient-info" style="margin-bottom:12px"></div>
+      <h4 class="muted">Medical Records</h4>
+      <table>
+        <thead><tr><th>ID</th><th>Diagnosis</th><th>Treatment</th><th>Notes</th><th>Created</th></tr></thead>
+        <tbody id="records-list"><tr><td colspan="5">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <script src="js/patientHistory.js"></script>
+</body>
+</html>
