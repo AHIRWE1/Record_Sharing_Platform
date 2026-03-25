@@ -6,7 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (token) opts.headers['Authorization'] = `Bearer ${token}`;
     return fetch(path, opts).then(async res => {
       const text = await res.text();
-      try { return JSON.parse(text); } catch { return text; }
+      let data;
+      try { data = JSON.parse(text); } catch { data = text; }
+      if (!res.ok) {
+        const msg = (data && data.message) ? data.message : `Request failed (${res.status})`;
+        const err = new Error(msg);
+        err.status = res.status;
+        err.data = data;
+        throw err;
+      }
+      return data;
     });
   };
 
@@ -22,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await api('/api/patients');
       renderPatients(data);
     } catch (err) {
-      patientList.innerHTML = `<tr><td colspan="5">Error loading patients</td></tr>`;
+      const msg = (err && err.message) ? err.message : 'Error loading patients';
+      patientList.innerHTML = `<tr><td colspan="5">${escapeHtml(msg)}</td></tr>`;
       console.error(err);
     }
   }
@@ -75,6 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   refreshBtn.addEventListener('click', loadPatients);
+
+  // View modal
+  function openModal() {
+    el('view-modal').classList.add('open');
+  }
 
   // View patient
   async function viewPatient(id) {

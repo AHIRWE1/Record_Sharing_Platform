@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Create Staff Account</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width:520px;margin:32px auto;">
+      <h2 class="title">Create Staff Account</h2>
+      <p class="muted" style="margin-top:0">Admin-only. You need to be logged in as an admin first.</p>
+      <form id="register-user-form">
+        <div style="margin-bottom:8px"><input id="username" type="text" placeholder="Username" required style="width:100%"></div>
+        <div style="margin-bottom:8px"><input id="password" type="password" placeholder="Temporary password" required style="width:100%"></div>
+        <div style="margin-bottom:8px">
+          <select id="role" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px">
+            <option value="staff" selected>staff</option>
+            <option value="doctor">doctor</option>
+            <option value="admin">admin</option>
+          </select>
+        </div>
+        <div style="text-align:right">
+          <button class="btn" type="submit">Create account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="js/registerUser.js"></script>
+</body>
+</html>
+
